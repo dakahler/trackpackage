@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$pL+F91"
+                   em:id="{3550f703-e582-4d05-9a08-453d09bdfdc6}"
+                   em:minVersion="2.0"
+                   em:maxVersion="3.0.*" />
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="{3f669128-5ad3-4053-ad9b-1afc4ea24c28}"
+                   em:name="Track Package"
+                   em:version="2.9"
+                   em:creator="Dave Kahler"
+                   em:description="Track Packages from the right-click menu."
+                   em:homepageURL="http://www.trackpackageextension.com"
+                   em:iconURL="chrome://trackpackage/content/icon.png"
+                   em:optionsURL="chrome://trackpackage/content/tpPrefDialog.xul">
+    <em:contributor>Luke Horne</em:contributor>
+    <em:contributor>Robert Harmon</em:contributor>
+    <em:targetApplication RDF:resource="rdf:#$oL+F91"/>
+    <em:targetApplication RDF:resource="rdf:#$pL+F91"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$oL+F91"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="3.0"
+                   em:maxVersion="3.6.*" />
+</RDF:RDF>

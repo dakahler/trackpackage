@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "trackpackage", ".\", "{34B91F04-3E2D-405B-BB7D-0F59BB35E253}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "2.0"
+		Debug.AspNetCompiler.VirtualPath = "/trackpackage"
+		Debug.AspNetCompiler.PhysicalPath = "trackpackage\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\trackpackage\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/trackpackage"
+		Release.AspNetCompiler.PhysicalPath = "trackpackage\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\trackpackage\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "58690"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34B91F04-3E2D-405B-BB7D-0F59BB35E253}.Debug|.NET.ActiveCfg = Debug|.NET
+		{34B91F04-3E2D-405B-BB7D-0F59BB35E253}.Debug|.NET.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
