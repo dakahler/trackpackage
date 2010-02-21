@@ -7,8 +7,8 @@
         buttons="accept,cancel"
         width="600"
         height="500"
-		onload="tpLoadSettings();"
-		ondialogaccept="return tpSaveSettings();"
+				onload="return com.dakahler.tp.prefs.tpLoadSettings();"
+				ondialogaccept="return com.dakahler.tp.prefs.tpSaveSettings();"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         xmlns:html="http://www.w3.org/1999/xhtml">
 		
@@ -56,10 +56,10 @@
 						</listbox>
 						
 						<hbox>
-							<button label="Add New Regex" onclick="tpAddNewRegex()" style="width: 150px; height: 20px;"/>
-							<button label="Delete Regex" onclick="tpDeleteRegex()" style="width: 90px; height: 20px;"/>
+							<button label="Add New Regex" onclick="com.dakahler.tp.prefs.tpAddNewRegex()" style="width: 150px; height: 20px;"/>
+							<button label="Delete Regex" onclick="com.dakahler.tp.prefs.tpDeleteRegex()" style="width: 90px; height: 20px;"/>
 							<spacer flex="1"/>
-							<button label="Reset To Defaults" onclick="tpResetRegexDefaults()" style="width: 120px; height: 20px;"/>
+							<button label="Reset To Defaults" onclick="com.dakahler.tp.prefs.tpResetRegexDefaults()" style="width: 120px; height: 20px;"/>
 						</hbox>
 						
 					</vbox>
@@ -83,10 +83,10 @@
 						</listbox>
 						
 						<hbox>
-							<button label="Add New URL" onclick="tpAddNewURL()" style="width: 150px; height: 20px;"/>
-							<button label="Delete URL" onclick="tpDeleteURL()" style="width: 90px; height: 20px;"/>
+							<button label="Add New URL" onclick="com.dakahler.tp.prefs.tpAddNewURL()" style="width: 150px; height: 20px;"/>
+							<button label="Delete URL" onclick="com.dakahler.tp.prefs.tpDeleteURL()" style="width: 90px; height: 20px;"/>
 							<spacer flex="1"/>
-							<button label="Reset To Defaults" onclick="tpResetURLDefaults()" style="width: 120px; height: 20px;"/>
+							<button label="Reset To Defaults" onclick="com.dakahler.tp.prefs.tpResetURLDefaults()" style="width: 120px; height: 20px;"/>
 						</hbox>
 						
 					</vbox>
@@ -108,9 +108,9 @@
 					<textbox id="tpUpdateURL" />
 					<spacer height="30" />
 					<hbox>
-						<button label="Update Regex/URL Preferences" onclick="tpUpdateDefs()" style="width: 200px; height: 20px;"/>
+						<button label="Update Regex/URL Preferences" onclick="com.dakahler.tp.prefs.tpUpdateDefs()" style="width: 200px; height: 20px;"/>
 						<spacer flex="1"/>
-						<button label="Save XML..." onclick="tpSaveXML()" style="width: 100px; height: 20px;"/>
+						<button label="Save XML..." onclick="com.dakahler.tp.prefs.tpSaveXML()" style="width: 100px; height: 20px;"/>
 					</hbox>
 				</tabpanel>
 				

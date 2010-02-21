@@ -13,7 +13,7 @@
 	<menupopup id="menu_ToolsPopup">
 		<menuitem	label       = "Tracking History..."
 					insertafter = "devToolsSeparator"
-					oncommand   = "tpOpenHistory();"    />
+					oncommand   = "com.dakahler.tp.functionLib.tpOpenHistory();"    />
 
 	</menupopup>
 
@@ -21,7 +21,7 @@
 	<menupopup id="taskPopup">
 		<menuitem	label       = "Tracking History..."
 					insertafter = "devToolsSeparator"
-					oncommand   = "tpOpenHistory();"    />
+					oncommand   = "com.dakahler.tp.functionLib.tpOpenHistory();"    />
 	</menupopup>
 
 	<!-- Firefox toolbar icon -->
@@ -30,7 +30,7 @@
 						id			= "tpbutton"
 						tooltiptext	= "Link all tracking numbers"
 						class		= "toolbarbutton-1"
-						oncommand	= "tpLinkNumbers();"	/>
+						oncommand	= "com.dakahler.tp.main.tpLinkNumbers();"	/>
 	</toolbarpalette>
 
 	<!-- Thunderbird toolbar icon -->
@@ -39,7 +39,7 @@
 						id			= "tpbutton"
 						tooltiptext	= "Link all tracking numbers"
 						class		= "toolbarbutton-1"
-						oncommand	= "tpLinkNumbers();"	/>
+						oncommand	= "com.dakahler.tp.main.tpLinkNumbers();"	/>
 	</toolbarpalette>
 
 
@@ -47,7 +47,7 @@
 	<popup id="contentAreaContextMenu">
 		<menuitem	id			= "trackpackage"
 					label		= "Track Package"
-					oncommand	= "tpTrackPackage();"	/>
+					oncommand	= "com.dakahler.tp.functionLib.tpTrackPackage();"	/>
 
 		<!-- Firefox context menu explicit tracking menu branch -->
 		<menu id="explicitmenu"
@@ -62,7 +62,7 @@
 	<popup id="messagePaneContext">
 		<menuitem	id			= "trackpackage"
 					label		= "Track Package"
-					oncommand	= "tpTrackPackage();"	/>
+					oncommand	= "com.dakahler.tp.functionLib.tpTrackPackage();"	/>
 
 		<!-- Thunderbird message pane context menu explicit tracking menu branch -->
 		<menu id	= "explicitmenu"
@@ -77,7 +77,7 @@
 	<popup id="mailContext">
 		<menuitem	id			= "trackpackage"
 					label		= "Track Package"
-					oncommand	= "tpTrackPackage();"	/>
+					oncommand	= "com.dakahler.tp.functionLib.tpTrackPackage();"	/>
 
 		<!-- Thunderbird message pane context menu explicit tracking menu branch -->
 		<menu id	= "explicitmenu"
@@ -92,7 +92,7 @@
 	<popup id="msgComposeContext">
 		<menuitem	id			= "trackpackage"
 					label		= "Track Package"
-					oncommand	= "tpTrackPackage();"	/>
+					oncommand	= "com.dakahler.tp.functionLib.tpTrackPackage();"	/>
 
 		<!-- Thunderbird message pane context menu explicit tracking menu branch -->
 		<menu id	= "explicitmenu"
