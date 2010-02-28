@@ -33,6 +33,25 @@
 						oncommand	= "com.dakahler.tp.main.tpLinkNumbers();"	/>
 	</toolbarpalette>
 
+	<!-- Firefox toolbar menu -->
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbaritem id="tphistorydropdown" class="chromeclass-toolbar-additional" height="33">
+				<button	label		= "Tracking History"
+								type		= "menu-button"
+								id			= "tpbuttonmenu"
+								tooltiptext	= "Track"
+								width = "250"
+								class		= "chromeclass-toolbar-additional"
+								oncommand	= "com.dakahler.tp.main.tpButtonMenuPressed(event.target);"
+								onload = "if (typeof(com) !== 'undefined') com.dakahler.tp.main.tpButtonMenuLoaded();">
+
+					<menupopup id="toolbarMenuPopup">
+					</menupopup>
+
+				</button>
+		</toolbaritem>
+	</toolbarpalette>
+
 	<!-- Thunderbird toolbar icon -->
 	<toolbarpalette id="MailToolbarPalette">
 		<toolbarbutton	label		= "Add Tracking Links"
@@ -40,6 +59,25 @@
 						tooltiptext	= "Link all tracking numbers"
 						class		= "toolbarbutton-1"
 						oncommand	= "com.dakahler.tp.main.tpLinkNumbers();"	/>
+	</toolbarpalette>
+
+	<!-- Thunderbird toolbar menu -->
+	<toolbarpalette id="MailToolbarPalette">
+		<toolbaritem id="tphistorydropdown" class="chromeclass-toolbar-additional" height="33">
+			<button	label		= "Tracking History"
+							type		= "menu-button"
+							id			= "tpbuttonmenu"
+							tooltiptext	= "Track"
+							width = "250"
+							class		= "chromeclass-toolbar-additional"
+							oncommand	= "com.dakahler.tp.main.tpButtonMenuPressed(event.target);"
+							onload = "if (typeof(com) !== 'undefined') com.dakahler.tp.main.tpButtonMenuLoaded();">
+
+				<menupopup id="toolbarMenuPopup">
+				</menupopup>
+
+			</button>
+		</toolbaritem>
 	</toolbarpalette>
 
 

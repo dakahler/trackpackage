@@ -31,12 +31,17 @@
 					<checkbox id="tpCheckBox" label="Use Tabs Instead of Windows" checked="false"/>
 					<checkbox id="tpSmartSense" label="Use Smart-sense" checked="false"/>
           <checkbox id="tpNotifications" label="Offer Carrier Correction Notifications" checked="false"/>
+					<checkbox id="tpPrivateBrowsing" label="No History Data Collection During Private Browsing" checked="false"/>
 				</tabpanel>
 				
 				<tabpanel id="historyTab" orient="vertical">
 					<hbox>
 						<label value="Max numbers to record:" control="tpMaxNumbers"/>
 						<textbox id="tpMaxNumbers" style="width: 40px;"/>
+					</hbox>
+					<hbox>
+						<label value="Max items in toolbar drop-down:" control="tpMaxDropdownItems"/>
+						<textbox id="tpMaxDropdownItems" style="width: 40px;"/>
 					</hbox>
 				</tabpanel>
 				

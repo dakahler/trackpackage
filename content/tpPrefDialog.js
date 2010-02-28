@@ -26,8 +26,14 @@ com.dakahler.tp.prefs = {
 		document.getElementById("tpNotifications").
 			setAttribute("checked", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpNotifications"));
 			
+		document.getElementById("tpPrivateBrowsing").
+			setAttribute("checked", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpPrivateBrowsing"));
+			
 		document.getElementById("tpMaxNumbers").
 			setAttribute("value", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpMaxNumbers"));
+			
+		document.getElementById("tpMaxDropdownItems").
+			setAttribute("value", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpMaxDropdownItems"));
 			
 		document.getElementById("tpEnableGMaps").
 			setAttribute("checked", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpEnableGMaps"));
@@ -110,8 +116,14 @@ com.dakahler.tp.prefs = {
 		com.dakahler.tp.prefs.tpPrefs.setCharPref("tpNotifications",
 			document.getElementById("tpNotifications").checked);
 			
+		com.dakahler.tp.prefs.tpPrefs.setCharPref("tpPrivateBrowsing",
+			document.getElementById("tpPrivateBrowsing").checked);
+			
 		com.dakahler.tp.prefs.tpPrefs.setCharPref("tpMaxNumbers",
 			document.getElementById("tpMaxNumbers").value);
+			
+		com.dakahler.tp.prefs.tpPrefs.setCharPref("tpMaxDropdownItems",
+			document.getElementById("tpMaxDropdownItems").value);
 			
 		com.dakahler.tp.prefs.tpPrefs.setCharPref("tpEnableGMaps",
 			document.getElementById("tpEnableGMaps").checked);

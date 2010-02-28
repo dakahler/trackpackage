@@ -7,8 +7,18 @@ if(!com.dakahler.tp.main) com.dakahler.tp.main={};
 
 com.dakahler.tp.main = {
 
-	observe: function(subject,topic,data)
+	observe: function(subject, topic, data)
 	{
+		if (topic == "nsPref:changed")
+		{
+			// aSubject is the nsIPrefBranch we're observing (after appropriate QI)
+			// aData is the name of the pref that's been changed (relative to aSubject)
+			if (data == "tpMaxDropdownItems")
+			{
+				com.dakahler.tp.functionLib.tpRebuildDropdown();
+			}
+		}
+
 		subject = subject.QueryInterface(Components.interfaces.nsIUpdateItem);
 
 		if (subject.name == "Track Package" && data == "item-uninstalled")
@@ -25,12 +35,79 @@ com.dakahler.tp.main = {
 	{
 		var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
 		observerService.addObserver(this, "em-action-requested", false);
+
+		// First we'll need the preference services to look for preferences.
+		var prefService = Components.classes["@mozilla.org/preferences-service;1"]
+									.getService(Components.interfaces.nsIPrefService);
+
+		// For this._branch we ask that the preferences for extensions.myextension. and children
+		this._branch = prefService.getBranch("trackpackage.");
+
+		// Now we queue the interface called nsIPrefBranch2. This interface is described as:  
+		// "nsIPrefBranch2 allows clients to observe changes to pref values."
+		this._branch.QueryInterface(Components.interfaces.nsIPrefBranch2);
+
+		// Finally add the observer.
+		this._branch.addObserver("", this, false);
+
 	},
 
 	deregister: function()
 	{
 		var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
 		observerService.removeObserver(this,"em-action-requested");
+	},
+	
+	tpFirstRun: function(prefs)
+	{
+        var ver = -1, firstrun = true;
+
+		var gExtensionManager = Components.classes["@mozilla.org/extensions/manager;1"]
+								.getService(Components.interfaces.nsIExtensionManager);
+		var current = gExtensionManager.getItemForID("{3f669128-5ad3-4053-ad9b-1afc4ea24c28}").version;
+		//gets the version number.
+		//"extension@guid.net" should be replaced with your extension's GUID.
+		
+		
+		var webpage = "http://trackpackageextension.com/firstrun?version=" + current + "&upgrade=";
+	        
+		try
+		{
+			ver = prefs.getCharPref("version");
+			firstrun = prefs.getBoolPref("firstrun");
+		}
+		catch(e)
+		{
+		  //nothing
+		}
+		finally
+		{
+			if (firstrun)
+			{
+				prefs.setBoolPref("firstrun",false);
+				prefs.setCharPref("version",current);
+		    
+				// Insert code for first run here
+
+				// The example below loads a page by opening a new tab.
+				// Useful for loading a mini tutorial
+				window.setTimeout(function(){
+					gBrowser.selectedTab = gBrowser.addTab(webpage + "0");
+				}, 1500); //Firefox 2 fix - or else tab will get closed
+			}		
+		      
+			if (ver!=current && !firstrun)
+			{
+				// !firstrun ensures that this section does not get loaded if its a first run.
+				prefs.setCharPref("version",current);
+		        
+				// Insert code if version is different here => upgrade
+				window.setTimeout(function(){
+					gBrowser.selectedTab = gBrowser.addTab(webpage + "1" + "&oldversion=" + ver);
+				}, 1500); //Firefox 2 fix - or else tab will get closed
+			}
+		}
+
 	},
 
 	tpInit: function()
@@ -64,31 +141,37 @@ com.dakahler.tp.main = {
 						getService(Components.interfaces.nsIPrefService).getBranch("trackpackage.");
 		
 		if (!myTPPrefs.prefHasUserValue("tpCheckBox"))
-			myTPPrefs.setCharPref("tpCheckBox",true);
+			myTPPrefs.setCharPref("tpCheckBox", true);
 		
 		if (!myTPPrefs.prefHasUserValue("tpSmartSense"))
-			myTPPrefs.setCharPref("tpSmartSense",true);
+			myTPPrefs.setCharPref("tpSmartSense", true);
 			
 		if (!myTPPrefs.prefHasUserValue("tpNotifications"))
-			myTPPrefs.setCharPref("tpNotifications",true);
+			myTPPrefs.setCharPref("tpNotifications", true);
+			
+		if (!myTPPrefs.prefHasUserValue("tpPrivateBrowsing"))
+			myTPPrefs.setCharPref("tpPrivateBrowsing", true);
 			
 		if (!myTPPrefs.prefHasUserValue("tpTrackingHistory"))
-			myTPPrefs.setCharPref("tpTrackingHistory","");
+			myTPPrefs.setCharPref("tpTrackingHistory", "");
+			
+		if (!myTPPrefs.prefHasUserValue("tpMaxDropdownItems"))
+			myTPPrefs.setCharPref("tpMaxDropdownItems", "5");
 			
 		if (!myTPPrefs.prefHasUserValue("tpMaxNumbers"))
-			myTPPrefs.setCharPref("tpMaxNumbers","25");
+			myTPPrefs.setCharPref("tpMaxNumbers", "25");
 			
 		if (!myTPPrefs.prefHasUserValue("tpEnableGMaps"))
-			myTPPrefs.setCharPref("tpEnableGMaps",false);
+			myTPPrefs.setCharPref("tpEnableGMaps", false);
 			
 		if (!myTPPrefs.prefHasUserValue("tpRegex"))
-			myTPPrefs.setCharPref("tpRegex",com.dakahler.tp.functionLib.regexDefaults);
+			myTPPrefs.setCharPref("tpRegex", com.dakahler.tp.functionLib.regexDefaults);
 			
 		if (!myTPPrefs.prefHasUserValue("tpURL"))
-			myTPPrefs.setCharPref("tpURL",com.dakahler.tp.functionLib.URLDefaults);
+			myTPPrefs.setCharPref("tpURL", com.dakahler.tp.functionLib.URLDefaults);
 			
 		if (!myTPPrefs.prefHasUserValue("tpUpdateURL"))
-			myTPPrefs.setCharPref("tpUpdateURL","http://www.trackpackageextension.com/defs/defaults.xml");
+			myTPPrefs.setCharPref("tpUpdateURL", "http://www.trackpackageextension.com/defs/defaults.xml");
 			
 			
 		// Add necessary items to explicit tracking menu
@@ -120,7 +203,11 @@ com.dakahler.tp.main = {
 				
 			if (document.getElementById("mailContext"))
 				document.getElementById("mailContext").appendChild(menuitem);
-				
+		}
+		
+		if (!com.dakahler.tp.functionLib.gInThunderbird)
+		{
+			com.dakahler.tp.main.tpFirstRun(myTPPrefs);
 		}
 	},
 
@@ -272,6 +359,45 @@ com.dakahler.tp.main = {
 			brwsr = win.getMessageBrowser();
 			if (brwsr)
 				brwsr.docShell.contentViewer.DOMDocument.body.innerHTML = workingHTML;
+		}
+	},
+	
+	tpButtonMenuPressed: function(target)
+	{
+		// Here, we either get tpbuttonmenu (user clicked on top-level button),
+		// or we get one of the drop-down buttons
+		
+		if (target.id == "tpbuttonmenu")
+		{
+			// Look for the child with the historyInfo property we need
+			var child = target.firstChild;
+			while (child)
+			{
+				if (child.historyInfo != undefined)
+				{
+					target = child;
+					break;
+				}
+				child = child.nextSibling;
+			}
+		}
+		
+		if (target.historyInfo != undefined)
+		{
+			var carrier = target.historyInfo['Carrier'];
+			var trackingString = target.historyInfo['TrackingNumber'];
+			var title = carrier + ": " + trackingString;
+			
+			com.dakahler.tp.functionLib.tpOpenPackageWindow(
+					com.dakahler.tp.functionLib.tpGetPackageURL(carrier, trackingString, false), false, false, title);
+		}
+	},
+	
+	tpButtonMenuLoaded: function()
+	{
+		if (com != undefined)
+		{
+			com.dakahler.tp.functionLib.tpRebuildDropdown();
 		}
 	},
 	

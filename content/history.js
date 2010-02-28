@@ -27,7 +27,7 @@ com.dakahler.tp.history = {
 					
 		var historyString = myTPPrefs.getCharPref("tpTrackingHistory");
 
-		var historyArray = com.dakahler.tp.history.tpBuildHistoryArray(historyString)
+		var historyArray = com.dakahler.tp.history.tpBuildHistoryArray(historyString);
 		
 		// Populate list box
 		com.dakahler.tp.history.tpPopulateListBox(historyArray);
