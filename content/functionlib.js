@@ -14,6 +14,8 @@ com.dakahler.tp.functionLib = {
 
 
 	gInThunderbird: false,
+	
+	gHasThunderbrowse: false,
 
 	tpRemoveSpaces: function(myString)
 	{
@@ -53,7 +55,7 @@ com.dakahler.tp.functionLib = {
 	tpTrackGoogleMaps: function()
 	{
 		var trackingString = com.dakahler.tp.functionLib.tpGetTrackingString();
-		var carrierOrig = com.dakahler.tp.functionLib.tpGetCarrierString(trackingString);
+		var carrierOrig = com.dakahler.tp.functionLib.tpGetPackageCarrier(trackingString);
 		var carrier = carrierOrig.toLowerCase();
 		var gmapsURL = "http://www.packagemapping.com?action=track&shipper=" + carrier + "&tracknum=" + trackingString;
 		if (carrier.length)
@@ -109,9 +111,16 @@ com.dakahler.tp.functionLib = {
 		{
 			if (com.dakahler.tp.functionLib.gInThunderbird)
 			{
-				var messenger = Components.classes["@mozilla.org/messenger;1"].createInstance();         
-				messenger = messenger.QueryInterface(Components.interfaces.nsIMessenger);
-				messenger.launchExternalURL(URLString);
+				if (!com.dakahler.tp.functionLib.gHasThunderbrowse || !com.dakahler.tp.functionLib.tpGetThunderbrowseSetting())
+				{
+					var messenger = Components.classes["@mozilla.org/messenger;1"].createInstance();         
+					messenger = messenger.QueryInterface(Components.interfaces.nsIMessenger);
+					messenger.launchExternalURL(URLString);
+				}
+				else
+				{
+					browsetothrufield(URLString,null,null,null,null);
+				}
 			}
 			else
 			{
@@ -222,26 +231,6 @@ com.dakahler.tp.functionLib = {
 		return searchStr;
 	},
 
-	tpGetCarrierString: function(trackingString)
-	{
-		// Determine what carrier this string belongs to
-		var regexURLArray = com.dakahler.tp.functionLib.tpGetRegexURLArray();
-		for (var i = 0; i < regexURLArray.length; i++)
-		{
-		
-			if (regexURLArray[i][1] == "")
-				continue;
-		
-			var regex = new RegExp(regexURLArray[i][1],"gi");
-			if (regex.test(trackingString))
-			{
-				return(regexURLArray[i][0]);
-			}
-		}
-		
-		return(null);
-	},
-
 	tpGetTrackingString: function()
 	{
 		var trackingString = "";
@@ -271,6 +260,16 @@ com.dakahler.tp.functionLib = {
 
 	tpGetPackageCarrier: function(trackingString)
 	{
+		// First, look in the history for the carrier
+		var historyArray = com.dakahler.tp.functionLib.tpGetHistoryArray();
+		for (var i = 0; i < historyArray.length; i++)
+		{
+			if (historyArray[i]['TrackingNumber'] == trackingString)
+			{
+				return historyArray[i]['Carrier'];
+			}
+		}
+	
 		// Determine what carrier this string belongs to
 		var regexURLArray = com.dakahler.tp.functionLib.tpGetRegexURLArray();
 		var carrier;
@@ -355,6 +354,14 @@ com.dakahler.tp.functionLib = {
 						getService(Components.interfaces.nsIPrefService).getBranch("trackpackage.");
 					
 		return(myTPPrefs.getCharPref("tpPrivateBrowsing") == "true");
+	},
+	
+	tpGetThunderbrowseSetting: function()
+	{
+		var myTPPrefs = Components.classes["@mozilla.org/preferences-service;1"].
+						getService(Components.interfaces.nsIPrefService).getBranch("trackpackage.");
+					
+		return(myTPPrefs.getCharPref("tpUseThunderbrowse") == "true");
 	},
 
 	tpGetGMapsSetting: function()

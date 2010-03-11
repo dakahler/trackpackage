@@ -16,6 +16,11 @@ com.dakahler.tp.history = {
 		if (appInfo.ID == THUNDERBIRD_ID)
 		{
 			com.dakahler.tp.functionLib.gInThunderbird = true;
+			
+			if (document.getElementById("messagepanebox"))
+			{
+				com.dakahler.tp.functionLib.gHasThunderbrowse = document.getElementById("messagepanebox").hasAttribute("thunderbrowse");
+			}
 		}
 		else
 		{

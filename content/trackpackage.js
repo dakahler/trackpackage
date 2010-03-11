@@ -131,6 +131,9 @@ com.dakahler.tp.main = {
 				
 			if (document.getElementById("msgComposeContext") != null)
 				document.getElementById("msgComposeContext").addEventListener("popupshowing",tpHidePtr,false);
+				
+			if (document.getElementById("messagepanebox") != null)
+				com.dakahler.tp.functionLib.gHasThunderbrowse = document.getElementById("messagepanebox").hasAttribute("thunderbrowse");
 		}
 		else
 		{
@@ -151,6 +154,9 @@ com.dakahler.tp.main = {
 			
 		if (!myTPPrefs.prefHasUserValue("tpPrivateBrowsing"))
 			myTPPrefs.setCharPref("tpPrivateBrowsing", true);
+			
+		if (!myTPPrefs.prefHasUserValue("tpUseThunderbrowse"))
+			myTPPrefs.setCharPref("tpUseThunderbrowse", true);
 			
 		if (!myTPPrefs.prefHasUserValue("tpTrackingHistory"))
 			myTPPrefs.setCharPref("tpTrackingHistory", "");

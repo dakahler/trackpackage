@@ -17,6 +17,19 @@ com.dakahler.tp.prefs = {
 	
 	tpLoadSettings: function()
 	{
+		const FIREFOX_ID = "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}";
+		const THUNDERBIRD_ID = "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
+		var appInfo = Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULAppInfo);
+		
+		if (appInfo.ID == THUNDERBIRD_ID)
+		{
+			com.dakahler.tp.functionLib.gInThunderbird = true;
+		}
+		else
+		{
+			com.dakahler.tp.functionLib.gInThunderbird = false;
+		}
+	
 		document.getElementById("tpCheckBox").
 			setAttribute("checked", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpCheckBox"));
 			
@@ -29,6 +42,9 @@ com.dakahler.tp.prefs = {
 		document.getElementById("tpPrivateBrowsing").
 			setAttribute("checked", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpPrivateBrowsing"));
 			
+		document.getElementById("tpUseThunderbrowse").
+			setAttribute("checked", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpUseThunderbrowse"));
+			
 		document.getElementById("tpMaxNumbers").
 			setAttribute("value", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpMaxNumbers"));
 			
@@ -40,6 +56,11 @@ com.dakahler.tp.prefs = {
 			
 		document.getElementById("tpUpdateURL").
 			setAttribute("value", com.dakahler.tp.prefs.tpPrefs.getCharPref("tpUpdateURL"));
+			
+		if (!com.dakahler.tp.functionLib.gInThunderbird)
+		{
+			document.getElementById("tpUseThunderbrowse").style.visibility = 'hidden';
+		}
 			
 			
 		var regexListbox = document.getElementById("regexListbox");
@@ -118,6 +139,9 @@ com.dakahler.tp.prefs = {
 			
 		com.dakahler.tp.prefs.tpPrefs.setCharPref("tpPrivateBrowsing",
 			document.getElementById("tpPrivateBrowsing").checked);
+			
+		com.dakahler.tp.prefs.tpPrefs.setCharPref("tpUseThunderbrowse",
+			document.getElementById("tpUseThunderbrowse").checked);
 			
 		com.dakahler.tp.prefs.tpPrefs.setCharPref("tpMaxNumbers",
 			document.getElementById("tpMaxNumbers").value);
