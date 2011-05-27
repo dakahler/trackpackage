@@ -1,33 +1,18 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "trackpackage", ".\", "{34B91F04-3E2D-405B-BB7D-0F59BB35E253}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFramework = "2.0"
-		Debug.AspNetCompiler.VirtualPath = "/trackpackage"
-		Debug.AspNetCompiler.PhysicalPath = "trackpackage\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\trackpackage\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/trackpackage"
-		Release.AspNetCompiler.PhysicalPath = "trackpackage\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\trackpackage\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "58690"
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Track Package", "Track Package.vcxproj", "{4CECC0D4-2E6B-43F5-B48F-BC6784A22659}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|.NET = Debug|.NET
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34B91F04-3E2D-405B-BB7D-0F59BB35E253}.Debug|.NET.ActiveCfg = Debug|.NET
-		{34B91F04-3E2D-405B-BB7D-0F59BB35E253}.Debug|.NET.Build.0 = Debug|.NET
+		{4CECC0D4-2E6B-43F5-B48F-BC6784A22659}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4CECC0D4-2E6B-43F5-B48F-BC6784A22659}.Debug|Win32.Build.0 = Debug|Win32
+		{4CECC0D4-2E6B-43F5-B48F-BC6784A22659}.Release|Win32.ActiveCfg = Release|Win32
+		{4CECC0D4-2E6B-43F5-B48F-BC6784A22659}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
