@@ -428,9 +428,9 @@ com.dakahler.tp.functionLib = {
 				}
 			}
 		    
-			i = Math.max(0, i);
+			i++;
 
-			finalString = currentHistoryString.replace(currentHistoryString.substr(i, j), carrier + "," + trackingString)
+			finalString = currentHistoryString.replace(currentHistoryString.substr(i, j - i), carrier + "," + trackingString)
 		}
 		else
 		{
