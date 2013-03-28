@@ -537,20 +537,48 @@ com.dakahler.tp.functionLib = {
 	{
 		if (!com.dakahler.tp.functionLib.gInThunderbird)
 		{
-			if (typeof(Components.classes["@mozilla.org/privatebrowsing;1"]) !== 'undefined')
-			{
-				var pbs = Components.classes["@mozilla.org/privatebrowsing;1"].getService(Components.interfaces.nsIPrivateBrowsingService);  
-				return (pbs.privateBrowsingEnabled);
+			let pbService;
+			let PrivateBrowsingUtils;
+
+			// get the private browsing service if it exists
+			try {
+				pbService = Cc["@mozilla.org/privatebrowsing;1"].getService(Ci.nsIPrivateBrowsingService);
+
+				// a dummy service exists for the moment (Fx20 atleast), but will be removed eventually
+				// ie: the service will exist, but it won't do anything and the global private browing
+				//     feature is not really active.  See Bug 818800 and Bug 826037
+				if (!('privateBrowsingEnabled' in pbService))
+				  pbService = undefined;
+			} catch(e) { /* Private Browsing Service has been removed (Bug 818800) */ }
+
+			try {
+				PrivateBrowsingUtils = Cu.import('resource://gre/modules/PrivateBrowsingUtils.jsm', {}).PrivateBrowsingUtils;
 			}
-			else
+			catch(e) { /* if this file DNE then an error will be thrown */ }
+
+			// checks that global private browsing is implemented
+			// if the global private browsing service dne here then it dne at all or it is a dummy
+			let isGlobalPBSupported = !!pbService;
+
+			// checks that per-window private browsing is implemented
+			// if the global pb service dne but the PrivateBrowsingUtils.jsm exists then assume
+			// is enabled.
+			let isWindowPBSupported = !isGlobalPBSupported && !!PrivateBrowsingUtils;
+			
+			// checks that per-tab private browsing is implemented
+			//let isTabPBSupported = !pbService && !!PrivateBrowsingUtils && satisfiesVersion(version, '>=20.0*');
+			
+			if (isWindowPBSupported)
 			{
-				return false;
+				return PrivateBrowsingUtils.isWindowPrivate(document.commandDispatcher.focusedWindow);
+			}
+			else if (isGlobalPBSupported)
+			{
+				return true;
 			}
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	},
 	
 	tpGetHistoryArray: function()

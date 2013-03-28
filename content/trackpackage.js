@@ -43,9 +43,9 @@ com.dakahler.tp.main = {
 		// For this._branch we ask that the preferences for extensions.myextension. and children
 		this._branch = prefService.getBranch("trackpackage.");
 
-		// Now we queue the interface called nsIPrefBranch2. This interface is described as:  
-		// "nsIPrefBranch2 allows clients to observe changes to pref values."
-		this._branch.QueryInterface(Components.interfaces.nsIPrefBranch2);
+		// Now we queue the interface called nsIPrefBranch. This interface is described as:  
+		// "nsIPrefBranch allows clients to observe changes to pref values."
+		this._branch.QueryInterface(Components.interfaces.nsIPrefBranch);
 
 		// Finally add the observer.
 		this._branch.addObserver("", this, false);

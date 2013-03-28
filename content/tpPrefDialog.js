@@ -413,7 +413,7 @@ com.dakahler.tp.prefs = {
 									 .createInstance(Components.interfaces.nsIFileOutputStream);
 									 
 			var file = Components.classes["@mozilla.org/file/local;1"]
-						 .createInstance(Components.interfaces.nsILocalFile);
+						 .createInstance(Components.interfaces.nsIFile);
 						 
 			file.initWithPath(filePicker.file.path);
 
