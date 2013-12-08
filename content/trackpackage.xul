@@ -88,10 +88,10 @@
 					oncommand	= "com.dakahler.tp.functionLib.tpTrackPackage();"	/>
 
 		<!-- Firefox context menu explicit tracking menu branch -->
-		<menu id="explicitmenu"
+		<menu id="trackpackage_explicitmenu"
 			  label="Track Package">
 			
-			<menupopup id = "explicitpopup"		/>
+			<menupopup id = "trackpackage_explicitpopup"		/>
 			
 		</menu>
 	</popup>
@@ -103,10 +103,10 @@
 					oncommand	= "com.dakahler.tp.functionLib.tpTrackPackage();"	/>
 
 		<!-- Thunderbird message pane context menu explicit tracking menu branch -->
-		<menu id	= "explicitmenu"
+		<menu id	= "trackpackage_explicitmenu"
 			  label	= "Track Package">
 			
-			<menupopup id = "explicitpopup" />
+			<menupopup id = "trackpackage_explicitpopup" />
 			
 		</menu>
 	</popup>
@@ -118,10 +118,10 @@
 					oncommand	= "com.dakahler.tp.functionLib.tpTrackPackage();"	/>
 
 		<!-- Thunderbird message pane context menu explicit tracking menu branch -->
-		<menu id	= "explicitmenu"
+		<menu id	= "trackpackage_explicitmenu"
 			  label	= "Track Package">
 			
-			<menupopup id = "explicitpopup" />
+			<menupopup id = "trackpackage_explicitpopup" />
 			
 		</menu>
 	</popup>
@@ -133,10 +133,10 @@
 					oncommand	= "com.dakahler.tp.functionLib.tpTrackPackage();"	/>
 
 		<!-- Thunderbird message pane context menu explicit tracking menu branch -->
-		<menu id	= "explicitmenu"
+		<menu id	= "trackpackage_explicitmenu"
 			  label	= "Track Package">
 			
-			<menupopup id = "explicitpopup" />
+			<menupopup id = "trackpackage_explicitpopup" />
 			
 		</menu>
 	</popup>

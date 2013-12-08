@@ -60,6 +60,8 @@ com.dakahler.tp.main = {
 	
 	tpFirstRun: function(prefs)
 	{
+        // Disable first run functionality, don't have time to fix it
+	    /*
         var ver = -1, firstrun = true;
 
 		var gExtensionManager = Components.classes["@mozilla.org/extensions/manager;1"]
@@ -107,6 +109,7 @@ com.dakahler.tp.main = {
 				}, 1500); //Firefox 2 fix - or else tab will get closed
 			}
 		}
+        */
 
 	},
 
@@ -229,7 +232,7 @@ com.dakahler.tp.main = {
 		var showTrack = (com.dakahler.tp.functionLib.tpGetPackageURL(carrier, trackingString, false) != "" || !smartSense);
 		var tpItem = document.getElementById("trackpackage");
 		var gmapsItem = document.getElementById("trackgmaps");
-		var explicitItem = document.getElementById("explicitmenu");
+		var explicitItem = document.getElementById("trackpackage_explicitmenu");
 
 		//if (smartSense) {
 			if (tpItem)
@@ -242,7 +245,7 @@ com.dakahler.tp.main = {
 				explicitItem.hidden = true;
 		//}
 	//	else {
-	//		//gContextMenu.showItem("explicitmenu", showTrack );
+	//		//gContextMenu.showItem("trackpackage_explicitmenu", showTrack );
 	//		//gContextMenu.showItem("trackpackage", false );
 	//		
 	//		if (gmapsItem)
