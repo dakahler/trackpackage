@@ -130,11 +130,24 @@ com.dakahler.tp.functionLib = {
 				}
 				else
 				{
-					var newTab
 					if (!forceTabs)
-						newTab = openNewTabWith(URLString, null, null, true);
+					{
+						openNewTabWith(URLString, null, null, null, false, null);
+					}
 					else
-						newTab = window.opener.openNewTabWith(URLString, null, null, true);
+					{
+						//window.opener.openNewTabWith(URLString, null, null, null, false, null);
+						//window.focus();
+						
+						window.opener.gBrowser.loadOneTab(URLString, {
+						   referrerURI: null,
+						   charset: null,
+						   postData: null,
+						   inBackground: true,
+						   allowThirdPartyFixup: false,
+						   relatedToCurrent: false,
+						   isUTF8: true});
+					}
 					
 					if (typeof getBrowser == 'function')
 					{
